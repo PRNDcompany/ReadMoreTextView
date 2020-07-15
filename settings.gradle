@@ -1,0 +1,3 @@
+include ':readmore-textview'
+include ':app'
+rootProject.name = "ReadMoreTextView"

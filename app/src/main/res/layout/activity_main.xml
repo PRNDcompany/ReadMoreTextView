@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <kr.co.prnd.readmore.ReadMoreTextView
+        android:id="@+id/readMoreTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="@string/long_text"
+        app:readMoreColor="@color/colorPrimary"
+        app:readMoreMaxLine="4"
+        app:readMoreText="…더보기" />
+
+</LinearLayout>
