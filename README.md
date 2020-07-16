@@ -8,7 +8,7 @@
 
 | Sample               | Review list           | Profile               |
 | :------------------: | :-------------------: | :-------------------: |
-| ![](arts/sample1.gif)| ![](arts/sample3.gif) | ![](arts/sample2.gif) |
+| ![](arts/sample.gif)| ![](arts/sample3.gif) | ![](arts/sample2.gif) |
 
 <br><br><br><br>
 ## Setup
