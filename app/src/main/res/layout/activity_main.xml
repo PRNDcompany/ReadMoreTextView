@@ -14,7 +14,7 @@
         android:layout_margin="16dp"
         android:textSize="15sp"
         android:text="@string/long_text"
-        app:readMoreColor="#2b96ed"
+        app:readMoreColor="@color/colorPrimary"
         app:readMoreMaxLine="4"
         app:readMoreLineBreak="true"
         app:readMoreText="더보기"
