@@ -16,9 +16,9 @@
         android:text="@string/long_text"
         app:readMoreColor="@color/colorPrimary"
         app:readMoreMaxLine="4"
-        app:readMoreLineBreak="true"
-        app:readMoreText="더보기"
-        app:readMoreTextExpanded="접기"
+        app:readMoreLineBreak="false"
+        app:readMoreText=" 더보기"
+        app:readMoreTextExpanded=" 접기"
         app:readMoreNarrowClick="true"
         app:readMoreTextSize="14sp"
         />

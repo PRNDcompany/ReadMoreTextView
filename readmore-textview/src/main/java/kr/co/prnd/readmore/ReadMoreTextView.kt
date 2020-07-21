@@ -2,6 +2,7 @@ package kr.co.prnd.readmore
 
 import android.content.Context
 import android.graphics.Rect
+import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
@@ -13,7 +14,6 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.core.text.buildSpannedString
-import androidx.core.text.color
 import androidx.core.view.doOnLayout
 import androidx.core.view.isInvisible
 
@@ -123,10 +123,11 @@ class ReadMoreTextView @JvmOverloads constructor(
     }
 
     override fun setOnClickListener(onClickListener: OnClickListener?) {
-        if(readMoreNarrowClick.not())
+        if (readMoreNarrowClick.not()) {
             throw UnsupportedOperationException("You can not use OnClickListener in ReadMoreTextView with non-narrow click mode")
-        else
+        } else {
             super.setOnClickListener(onClickListener)
+        }
     }
 
     override fun setText(text: CharSequence?, type: BufferType?) {
@@ -146,31 +147,20 @@ class ReadMoreTextView @JvmOverloads constructor(
             true -> {
                 expandedText = buildSpannedString {
                     append(originalText)
-                    if (readMoreLineBreak)
+                    if (readMoreLineBreak) {
                         appendln()
+                    }
                     append(readMoreTextExpanded)
 
                     val startSpan = (if (readMoreLineBreak) 1 else 0) + originalText.length
                     val endSpan = startSpan + readMoreTextExpanded.length
-
-                    if (readMoreNarrowClick)
-                        setSpan(clickableSpan, startSpan, endSpan, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
-
-                    setSpan(
-                        ForegroundColorSpan(readMoreColor),
-                        startSpan,
-                        endSpan,
-                        Spanned.SPAN_INCLUSIVE_INCLUSIVE
-                    )
-
-                    if (readMoreTextSize != textSize)
-                        setSpan(
-                            AbsoluteSizeSpan(readMoreTextSize.toInt()),
-                            startSpan,
-                            endSpan,
-                            Spanned.SPAN_INCLUSIVE_INCLUSIVE
-                        )
-
+                    if (readMoreNarrowClick) {
+                        clickable(startSpan, endSpan)
+                    }
+                    if (readMoreTextSize != textSize) {
+                        fontSize(startSpan, endSpan)
+                    }
+                    color(startSpan, endSpan)
                 }
                 text = expandedText
             }
@@ -181,37 +171,52 @@ class ReadMoreTextView @JvmOverloads constructor(
 
                 collapseText = buildSpannedString {
                     append(originalSubText)
-                    if (readMoreLineBreak)
+                    if (readMoreLineBreak) {
                         appendln()
-
+                    }
                     append(readMoreText)
 
                     val startSpan = (if (readMoreLineBreak) 1 else 0) + originalSubText.length
                     val endSpan = startSpan + readMoreText.length
-
-                    if (readMoreNarrowClick)
-                        setSpan(clickableSpan, startSpan, endSpan, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
-
-                    setSpan(
-                        ForegroundColorSpan(readMoreColor),
-                        startSpan,
-                        endSpan,
-                        Spanned.SPAN_INCLUSIVE_INCLUSIVE
-                    )
-
-                    if (readMoreTextSize != textSize)
-                        setSpan(
-                            AbsoluteSizeSpan(readMoreTextSize.toInt()),
-                            startSpan,
-                            endSpan,
-                            Spanned.SPAN_INCLUSIVE_INCLUSIVE
-                        )
-
-
+                    if (readMoreNarrowClick) {
+                        clickable(startSpan, endSpan)
+                    }
+                    if (readMoreTextSize != textSize) {
+                        fontSize(startSpan, endSpan)
+                    }
+                    color(startSpan, endSpan)
                 }
                 text = collapseText
             }
         }
+    }
+
+    private fun SpannableStringBuilder.fontSize(
+        startSpan: Int,
+        endSpan: Int
+    ) {
+        setSpan(
+            AbsoluteSizeSpan(readMoreTextSize.toInt()),
+            startSpan,
+            endSpan,
+            Spanned.SPAN_INCLUSIVE_INCLUSIVE
+        )
+    }
+
+    private fun SpannableStringBuilder.clickable(
+        startSpan: Int,
+        endSpan: Int
+    ) {
+        setSpan(clickableSpan, startSpan, endSpan, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+    }
+
+    private fun SpannableStringBuilder.color(startSpan: Int, endSpan: Int) {
+        setSpan(
+            ForegroundColorSpan(readMoreColor),
+            startSpan,
+            endSpan,
+            Spanned.SPAN_INCLUSIVE_INCLUSIVE
+        )
     }
 
     private fun needSkipSetupReadMore(): Boolean =
