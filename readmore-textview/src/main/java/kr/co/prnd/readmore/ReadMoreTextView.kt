@@ -24,7 +24,10 @@ class ReadMoreTextView @JvmOverloads constructor(
         private set(value) {
             field = value
             text = when (value) {
-                State.EXPANDED -> originalText
+                State.EXPANDED -> {
+                    maxLines = Int.MAX_VALUE
+                    originalText
+                }
                 State.COLLAPSED -> collapseText
             }
             changeListener?.onStateChange(value)
@@ -100,7 +103,8 @@ class ReadMoreTextView @JvmOverloads constructor(
             return
         }
         originalText = text
-
+        maxLines = readMoreMaxLine
+        
         val adjustCutCount = getAdjustCutCount(readMoreMaxLine, readMoreText)
         val maxTextIndex = layout.getLineVisibleEnd(readMoreMaxLine - 1)
         val originalSubText = originalText.substring(0, maxTextIndex - 1 - adjustCutCount)
