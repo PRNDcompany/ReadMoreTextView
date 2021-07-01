@@ -13,7 +13,7 @@
 <br><br><br><br>
 ## Setup
 ### Gradle
-[ ![Download](https://api.bintray.com/packages/prnd/maven/readmore-textview/images/download.svg) ](https://bintray.com/prnd/maven/readmore-textview/_latestVersion)
+[![Maven Central](https://img.shields.io/maven-central/v/kr.co.prnd/readmore-textview.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22kr.co.prnd%22%20AND%20a:%readmore-textview%22)
 ```gradle
 dependencies {
     implementation 'kr.co.prnd:readmore-textview:x.x.x'
