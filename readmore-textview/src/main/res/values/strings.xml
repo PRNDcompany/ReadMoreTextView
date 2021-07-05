@@ -2,5 +2,6 @@
 <resources>
 
     <string name="read_more">…더보기</string>
+    <string name="read_more_expanded">접기</string>
 
 </resources>

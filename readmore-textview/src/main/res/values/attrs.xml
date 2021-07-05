@@ -4,7 +4,11 @@
     <declare-styleable name="ReadMoreTextView">
         <attr name="readMoreMaxLine" format="integer" />
         <attr name="readMoreText" format="string|reference" />
+        <attr name="readMoreTextExpanded" format="string|reference" />
         <attr name="readMoreColor" format="color|reference" />
+        <attr name="readMoreLineBreak" format="boolean" />
+        <attr name="readMoreNarrowClick" format="boolean" />
+        <attr name="readMoreTextSize" format="dimension" />
     </declare-styleable>
 
 </resources>
